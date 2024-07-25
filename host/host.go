@@ -12,6 +12,7 @@ import (
 	"fmt"
 
 	"github.com/elastic/otel-profiling-agent/libpf"
+	"github.com/elastic/otel-profiling-agent/times"
 	"github.com/elastic/otel-profiling-agent/util"
 )
 
@@ -53,7 +54,7 @@ type Trace struct {
 	Comm             string
 	Frames           []Frame
 	Hash             TraceHash
-	KTime            util.KTime
+	KTime            times.KTime
 	PID              util.PID
 	APMTraceID       libpf.APMTraceID
 	APMTransactionID libpf.APMTransactionID

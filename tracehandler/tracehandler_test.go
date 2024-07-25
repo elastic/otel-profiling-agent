@@ -16,6 +16,7 @@ import (
 
 	"github.com/elastic/otel-profiling-agent/host"
 	"github.com/elastic/otel-profiling-agent/libpf"
+	"github.com/elastic/otel-profiling-agent/times"
 	"github.com/elastic/otel-profiling-agent/tracehandler"
 	"github.com/elastic/otel-profiling-agent/util"
 )
@@ -43,7 +44,7 @@ func (f *fakeTraceProcessor) ConvertTrace(trace *host.Trace) *libpf.Trace {
 	return &newTrace
 }
 
-func (f *fakeTraceProcessor) SymbolizationComplete(util.KTime) {}
+func (f *fakeTraceProcessor) SymbolizationComplete(times.KTime) {}
 
 func (f *fakeTraceProcessor) MaybeNotifyAPMAgent(*host.Trace, libpf.TraceHash, uint16) string {
 	return ""
