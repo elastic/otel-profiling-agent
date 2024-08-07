@@ -16,6 +16,7 @@ import (
 
 	"github.com/elastic/otel-profiling-agent/host"
 	"github.com/elastic/otel-profiling-agent/libpf"
+	"github.com/elastic/otel-profiling-agent/times"
 	"github.com/elastic/otel-profiling-agent/tracehandler"
 	"github.com/elastic/otel-profiling-agent/util"
 )
@@ -29,7 +30,6 @@ func defaultTimes() *fakeTimes {
 }
 
 func (ft *fakeTimes) MonitorInterval() time.Duration { return ft.monitorInterval }
-func (ft *fakeTimes) BootTimeUnixNano() int64        { return 0 }
 
 // fakeTraceProcessor implements a fake TraceProcessor used only within the test scope.
 type fakeTraceProcessor struct{}
@@ -43,7 +43,7 @@ func (f *fakeTraceProcessor) ConvertTrace(trace *host.Trace) *libpf.Trace {
 	return &newTrace
 }
 
-func (f *fakeTraceProcessor) SymbolizationComplete(util.KTime) {}
+func (f *fakeTraceProcessor) SymbolizationComplete(times.KTime) {}
 
 func (f *fakeTraceProcessor) MaybeNotifyAPMAgent(*host.Trace, libpf.TraceHash, uint16) string {
 	return ""

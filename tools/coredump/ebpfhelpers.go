@@ -22,7 +22,7 @@ import (
 	"github.com/elastic/otel-profiling-agent/host"
 	"github.com/elastic/otel-profiling-agent/libpf"
 	"github.com/elastic/otel-profiling-agent/support"
-	"github.com/elastic/otel-profiling-agent/util"
+	"github.com/elastic/otel-profiling-agent/times"
 
 	log "github.com/sirupsen/logrus"
 )
@@ -55,7 +55,7 @@ func __push_frame(id, file, line C.u64, frameType, returnAddress C.uchar) C.int 
 
 //export bpf_ktime_get_ns
 func bpf_ktime_get_ns() C.ulonglong {
-	return C.ulonglong(util.GetKTime())
+	return C.ulonglong(times.GetKTime())
 }
 
 //export bpf_get_current_comm
